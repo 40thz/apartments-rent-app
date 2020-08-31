@@ -18,7 +18,7 @@
                     <input type="text" name="adminLogin" placeholder="Логин">
                 </div>
                 <div class="admin__password">
-                    <input type="text" name="adminPass" placeholder="Пароль">
+                    <input type="password" name="adminPass" placeholder="Пароль">
                 </div>
                 <input type="submit" name="sub">
             </form>
