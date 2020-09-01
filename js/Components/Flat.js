@@ -33,7 +33,7 @@ class Flat {
         `;
         }
 
-         html = `
+        html = `
                     <div class="flat__content__inside">
             
                     <div class="flat__content__description__content">
@@ -78,8 +78,8 @@ class Flat {
                     </div>
             </div>
         `;
-        
-        
+
+
         // Отрисовка блока информации о кваритре
 
         TEST_MODAL_FLAT[FloorInfoParse].innerHTML = flatContentHtml;
@@ -92,7 +92,7 @@ class Flat {
         const gallerySlideArr = document.querySelectorAll('.gallery__flat__line__img');
         const buyBtn = document.querySelector('.flat__content_button__buy');
         const MODAL__FLAT__INFO = document.querySelector('.yzel');
-        
+
 
         // Вспомогательные переменные
         let moveSlide = 0
@@ -122,7 +122,7 @@ class Flat {
                 if (moveSlide === -3000) {
                     moveSlide = moveSlide = 0
                 }
-            } 
+            }
             if (e.target.nodeName === 'IMG') {
                 e.path[2].children[1].style.left = `${moveSlide}px`;
             } else {
@@ -168,8 +168,8 @@ class Flat {
             `;
             formInfoRender();
         }
-        
-        const formInfoRender = () =>{
+
+        const formInfoRender = () => {
             MODAL__FLAT__INFO.innerHTML += `
             <div class="flat__content__form__info">
                 <h1>Заполните форму и мы свяжемся с вами!</h1>
@@ -200,23 +200,23 @@ class Flat {
                 </div>
             </div>
             `;
-            
-            $('form').submit(function(e) { 
-                var postForm = { 
-                    'name'     : $('input[name=name]').val(),
-                    'lastname'     : $('input[name=lastname]').val(),
-                    'phone'     : $('input[name=phone]').val(),
-                    'mail'     : $('input[name=mail]').val(),
-                    'flat'     : $('input[name=flat]').val(),
-                    'floor'     : $('input[name=floor]').val(),
+
+            $('form').submit(function (e) {
+                var postForm = {
+                    'name': $('input[name=name]').val(),
+                    'lastname': $('input[name=lastname]').val(),
+                    'phone': $('input[name=phone]').val(),
+                    'mail': $('input[name=mail]').val(),
+                    'flat': $('input[name=flat]').val(),
+                    'floor': $('input[name=floor]').val(),
                 };
-            
+
                 $.ajax({
-                    type      : 'POST',
-                    url       : 'save.php',
-                    data      : postForm,
-                    success   : function() {
-                                    alert('Данные отправлены, вам перезвонят через 5 минут, спасибо что выбрали нас !')
+                    type: 'POST',
+                    url: 'save.php',
+                    data: postForm,
+                    success: function () {
+                        alert('Данные отправлены, вам перезвонят через 5 минут, спасибо что выбрали нас !')
                     }
                 });
                 e.preventDefault();
@@ -224,25 +224,20 @@ class Flat {
         }
         const imgsSlider = document.querySelectorAll('.gallery__flat__line__img img')
         const preloader = document.querySelector('.preloader__content');
-        const modalName = document.querySelector('.modal__name');
         let loadedImg = 0;
 
-        const imageLoaded = () =>{
+        const imageLoaded = (e) => {
             loadedImg++
-                if(loadedImg === imgsSlider.length){
-                    
-                    setTimeout( function(){
-                        preloader.classList.add('fadeOut');
-                        setTimeout(function() {
-                            preloader.remove()
-
-                        },500)
-                    }, 500)
-                    
-                }
-                
+            if (loadedImg === imgsSlider.length) {
+                preloader.classList.add('fadeOut');
+                e.path[7].style.overflow = '';
+                setTimeout(function () {
+                    preloader.remove()
+                }, 500)
             }
-        for(item of imgsSlider){
+
+        }
+        for (item of imgsSlider) {
             item.addEventListener('load', imageLoaded)
         }
         buyBtn.addEventListener('click', formRender)

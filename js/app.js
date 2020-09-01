@@ -15,11 +15,15 @@ for(item of modalBlock){
     const closeModal = (e) => {
         if (e.target.className === 'modal__floor__container') {
             e.target.style.display = 'none'
-    
+            
             storage.floor = ''; storage.flat = '';
             document.querySelector('.flat__content').remove();
             e.toElement.firstElementChild.firstElementChild.style.display = 'flex';
         }
+    }
+
+    const overflowHide = () =>{
+        item.style.display = 'none';
     }
     item.addEventListener('click', closeModal);
 }
@@ -75,6 +79,7 @@ flats.forEach(item => {
     const openModalFlat = (e) => {
         let flatTargetId = e.target.dataset.flatId;
         flatInfo = flatInfo = flatTargetId
+        e.path[5].style.overflow = 'hidden'
         flatPart.render();
         e.path[4].style.display = 'none';
         document.querySelector(`[data-modalflat-id="${flatTargetId}"]`).style.display = 'flex';
